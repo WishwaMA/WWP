@@ -1,377 +1,440 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8">
-    <title>Wishwa P Weragoda - Creative Portfolio</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Web Designer, Motion Animation, Full Stack Developer, Sri Lanka" name="keywords">
-    <meta content="Wishwa P Weragoda - Portfolio Website showcasing web design, motion animation, and development projects." name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
-
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishwa P Weragoda | Creative Portfolio</title>
     
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        darker: '#000000',
+                        accent: '#00f0ff',
+                        accentHover: '#00c3ff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light fixed-top shadow py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-        <a href="index.html" class="navbar-brand d-block d-lg-none">
-            <h1 class="text-primary fw-bold m-0">WWP</h1>
-        </a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between py-4 py-lg-0" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0">
-                <a href="#home" class="nav-item nav-link active">Home</a>
-                <a href="#about" class="nav-item nav-link">About</a>
-                <a href="#skill" class="nav-item nav-link">Qualifications</a>
-                <a href="#service" class="nav-item nav-link">Services</a>
-            </div>
-            <a href="index.html" class="navbar-brand bg-secondary py-3 px-4 mx-3 d-none d-lg-block">
-                <h1 class="text-primary fw-bold m-0">WWP</h1>
-            </a>
-            <div class="navbar-nav me-auto py-0">
-                <a href="#project" class="nav-item nav-link">Projects</a>
-                <a href="#contact" class="nav-item nav-link">Contact</a>
-            </div>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e5e5;
+            overflow-x: hidden;
+            /* Disable Text Selection to protect content */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+        }
+
+        @media (hover: hover) {
+            .glass-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(0, 240, 255, 0.4);
+                box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1);
+            }
+        }
+
+        .responsive-title {
+            font-size: clamp(2.5rem, 8vw, 7rem);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+        .gsap-reveal, .gsap-stagger, .gsap-hero {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-accent selection:text-black" oncontextmenu="return false;">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 top-0 py-4 px-6 md:px-12 flex justify-between items-center bg-dark/95 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="text-xl md:text-2xl font-heading font-black tracking-tighter text-white">
+            W<span class="text-accent">W</span>P.
         </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide">
+            <a href="#about" class="hover:text-accent transition">About</a>
+            <a href="#services" class="hover:text-accent transition">Services</a>
+            <a href="#skills" class="hover:text-accent transition">Skills</a>
+            <a href="#projects" class="hover:text-accent transition">Projects</a>
+            <a href="#contact" class="hover:text-accent transition">Contact</a>
+        </div>
+        <a href="#contact" class="hidden sm:inline-block px-5 py-2 text-xs md:text-sm border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition duration-300 font-medium">Let's Talk</a>
     </nav>
-    <!-- Navbar End -->
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-light my-6 mt-0" id="home" style="padding-top: 100px;">
-        <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 py-6 pb-0 pt-lg-0">
-                    <h3 class="text-primary mb-3">I'm</h3>
-                    <h1 class="display-3 mb-3">Wishwa P Weragoda</h1>
-                    <h2 class="typed-text-output d-inline"></h2>
-                    <div class="typed-text d-none">Web Designer, Motion Animator, Front End Developer, UI/UX Designer</div>
-                    <div class="d-flex align-items-center pt-5">
-                        <a href="#contact" class="btn btn-primary py-3 px-4 me-5">Let's Talk</a>
-                    </div>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[700px] h-[300px] md:h-[700px] bg-accent/10 rounded-full blur-[100px] -z-10"></div>
+        
+        <div class="container mx-auto relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+            <div class="lg:w-3/5 text-center lg:text-left">
+                <p class="gsap-hero text-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-3">Welcome to my universe</p>
+                <h1 class="gsap-hero responsive-title font-heading font-black leading-none text-white mb-4">
+                    WISHWA <br>
+                    <span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">WERAGODA</span>
+                </h1>
+                <h2 class="gsap-hero text-xl md:text-2xl text-gray-300 font-light mb-6">Creative Designer & <span class="text-white font-semibold">Developer</span></h2>
+                <p class="gsap-hero text-gray-400 max-w-xl mx-auto lg:mx-0 mb-8 text-sm md:text-base leading-relaxed">
+                    Building digital experiences with motion, code, and creativity. Specialized in full-stack web architectures and modern UI/UX design.
+                </p>
+                <div class="gsap-hero flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#projects" class="bg-white text-black px-8 py-3.5 rounded-full font-bold text-sm md:text-base hover:bg-accent transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] text-center">Explore Work</a>
+                    <a href="#contact" class="glass-card px-8 py-3.5 rounded-full font-bold text-sm md:text-base text-white flex items-center justify-center gap-2">Contact Me <i class="fas fa-arrow-right text-accent"></i></a>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <img class="img-fluid rounded shadow" src="img/profile3.jpeg" alt="Wishwa P Weragoda">
+            </div>
+            
+            <div class="lg:w-2/5 flex justify-center gsap-hero-img">
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full p-2 border border-white/10 glass-card">
+                    <img src="img/profile3.jpeg" alt="Wishwa P Weragoda" class="w-full h-full object-cover rounded-full filter grayscale hover:grayscale-0 transition duration-700 pointer-events-none">
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
+    </section>
 
-    <!-- About Start -->
-    <div class="container-xxl py-6" id="about">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="d-flex align-items-center mb-5">
-                        <div class="years flex-shrink-0 text-center me-4">
-                            <h1 class="display-1 mb-0 text-primary">03</h1>
-                            <h5 class="mb-0">Years</h5>
-                        </div>
-                        <h3 class="lh-base mb-0">of working experience as a web designer & developer</h3>
-                    </div>
-                    <p class="mb-4">Passionate creative designer and developer based in Sri Lanka, specializing in building high-quality, responsive web applications and engaging motion animations.</p>
-                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>Affordable & Custom Solutions</p>
-                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>High Quality Animation & Design</p>
-                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>On Time Project Delivery</p>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row g-3 mb-4">
-                        <div class="col-sm-6">
-                            <img class="img-fluid rounded shadow" src="img/about-1.jpg" alt="Design Work">
-                        </div>
-                        <div class="col-sm-6">
-                            <img class="img-fluid rounded shadow" src="img/about-2.jpg" alt="Development Work">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Marquee Section -->
+    <div class="py-6 bg-darker border-y border-white/5 overflow-hidden flex whitespace-nowrap">
+        <div class="animate-[marquee_20s_linear_infinite] flex gap-8 items-center text-2xl md:text-4xl font-heading font-black text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.15);">
+            <span>WEB DESIGN</span><i class="fas fa-star text-accent text-sm"></i>
+            <span>MOTION GRAPHICS</span><i class="fas fa-star text-accent text-sm"></i>
+            <span>UI/UX DESIGN</span><i class="fas fa-star text-accent text-sm"></i>
+            <span>FULL STACK</span><i class="fas fa-star text-accent text-sm"></i>
+        </div>
+        <div class="animate-[marquee_20s_linear_infinite] flex gap-8 items-center text-2xl md:text-4xl font-heading font-black text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.15); margin-left: 2rem;">
+            <span>WEB DESIGN</span><i class="fas fa-star text-accent text-sm"></i>
+            <span>MOTION GRAPHICS</span><i class="fas fa-star text-accent text-sm"></i>
+            <span>UI/UX DESIGN</span><i class="fas fa-star text-accent text-sm"></i>
+            <span>FULL STACK</span><i class="fas fa-star text-accent text-sm"></i>
         </div>
     </div>
-    <!-- About End -->
 
-    <!-- Qualifications & Skills Start -->
-    <div class="container-xxl py-6 bg-light" id="skill">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h1 class="display-5 mb-4">Skills & Expertise</h1>
-                    <p class="mb-4">Equipped with modern technical stacks for front-end development and creative media creation.</p>
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-bold">HTML / CSS</h6>
-                                    <h6 class="font-weight-bold">95%</h6>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-bold">Javascript</h6>
-                                    <h6 class="font-weight-bold">90%</h6>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
+    <!-- About Section -->
+    <section id="about" class="py-24 md:py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                <div class="lg:w-1/2 gsap-reveal">
+                    <h3 class="text-accent text-xs md:text-sm font-bold tracking-widest uppercase mb-3">About Me</h3>
+                    <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6 text-white leading-tight">Transforming Ideas Into Digital Reality.</h2>
+                    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-6">
+                        Based in Sri Lanka, I specialize in blending technical code infrastructure with sleek visual storytelling. My workflow bridges the gap between raw backend logic and high-end aesthetic interfaces.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 border-t border-white/10 pt-8 mt-6">
+                        <div>
+                            <h4 class="text-4xl md:text-5xl font-heading font-black text-white mb-1">03<span class="text-accent">+</span></h4>
+                            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-wider">Years Experience</p>
                         </div>
-                        <div class="col-md-6">
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-bold">React / Frontend</h6>
-                                    <h6 class="font-weight-bold">85%</h6>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-bold">Graphic & Motion Design</h6>
-                                    <h6 class="font-weight-bold">90%</h6>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
+                        <div>
+                            <h4 class="text-4xl md:text-5xl font-heading font-black text-white mb-1">50<span class="text-accent">+</span></h4>
+                            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-wider">Projects Completed</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <h2 class="mb-4">Education & Qualifications</h2>
-                    <div class="row gy-4 gx-4">
-                        <div class="col-12 bg-white p-4 rounded shadow-sm">
-                            <h5>Full - Stack Web Development Course</h5>
-                            <hr class="text-primary my-2">
-                            <p class="text-primary mb-1">2023</p>
-                            <h6 class="mb-0">Extraordinary Thinkers</h6>
-                            <p class="mb-0 text-muted">Studied Full Stack Web Development (HTML, CSS, JavaScript, NodeJS, React).</p>
-                        </div>
-                        <div class="col-12 bg-white p-4 rounded shadow-sm mt-3">
-                            <h5>Software Engineering [UG]</h5>
-                            <hr class="text-primary my-2">
-                            <p class="text-primary mb-1">2023</p>
-                            <h6 class="mb-0">Java Institute Sri Lanka</h6>
-                            <p class="mb-0 text-muted">Started undergraduate studies in Software Engineering.</p>
-                        </div>
+                
+                <div class="lg:w-1/2 grid grid-cols-2 gap-4 w-full gsap-reveal">
+                    <div class="glass-card p-2 rounded-2xl overflow-hidden mt-6">
+                        <img src="img/about-1.jpg" alt="Workspace" class="rounded-xl w-full h-48 md:h-60 object-cover pointer-events-none">
+                    </div>
+                    <div class="glass-card p-2 rounded-2xl overflow-hidden">
+                        <img src="img/about-2.jpg" alt="Setup" class="rounded-xl w-full h-48 md:h-60 object-cover pointer-events-none">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Qualifications & Skills End -->
+    </section>
 
-    <!-- Service Start -->
-    <div class="container-xxl py-6" id="service">
-        <div class="container">
-            <div class="row g-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="col-lg-6">
-                    <h1 class="display-5 mb-0">My Services</h1>
+    <!-- Services Section -->
+    <section id="services" class="py-24 md:py-32 bg-darker border-y border-white/5 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <h3 class="text-accent text-xs md:text-sm font-bold tracking-widest uppercase mb-3">What I Do</h3>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold text-white">Core Services</h2>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-8 md:p-10 rounded-3xl gsap-stagger">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-2xl text-accent">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Web Development</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Developing fully responsive, high-performance web systems using React, Tailwind, and modern stacks.</p>
                 </div>
-                <div class="col-lg-6 text-lg-end">
-                    <a class="btn btn-primary py-3 px-5" href="#contact">Hire Me</a>
+
+                <div class="glass-card p-8 md:p-10 rounded-3xl gsap-stagger">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-2xl text-accent">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Motion Graphics</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Crafting clean video edits, promotional intros, and dynamic animations to elevate visual storytelling.</p>
+                </div>
+
+                <div class="glass-card p-8 md:p-10 rounded-3xl gsap-stagger sm:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-2xl text-accent">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">UI/UX & Branding</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Designing modern brand identities, clean user interfaces, logos, and high-impact digital collateral.</p>
                 </div>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item d-flex flex-column bg-light rounded h-100 p-4 p-lg-5">
-                        <div class="bg-icon flex-shrink-0 mb-3">
-                            <i class="fa fa-film fa-2x text-primary"></i>
+        </div>
+    </section>
+
+    <!-- Skills & Education Section -->
+    <section id="skills" class="py-24 md:py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                
+                <div class="gsap-reveal">
+                    <h3 class="text-2xl md:text-3xl font-heading font-bold mb-8 flex items-center gap-3 text-white">
+                        <i class="fas fa-graduation-cap text-accent"></i> Education
+                    </h3>
+                    
+                    <div class="space-y-8 border-l border-white/20 pl-6 ml-2">
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-dark border-4 border-accent"></span>
+                            <span class="px-2.5 py-0.5 bg-white/10 text-accent text-xs font-bold rounded-full mb-2 inline-block">2023</span>
+                            <h4 class="text-lg font-bold text-white mb-1">Full-Stack Web Development</h4>
+                            <p class="text-gray-400 text-sm mb-2">Extraordinary Thinkers</p>
+                            <p class="text-gray-500 text-xs">Focused on front-end libraries, modern JavaScript architecture, and responsive application designs.</p>
                         </div>
-                        <h4 class="mb-3">Motion Animation</h4>
-                        <p class="m-0">Eye-catching motion graphics and creative animations tailored for brands and social media.</p>
+                        
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-dark border-4 border-accent"></span>
+                            <span class="px-2.5 py-0.5 bg-white/10 text-accent text-xs font-bold rounded-full mb-2 inline-block">2023</span>
+                            <h4 class="text-lg font-bold text-white mb-1">Software Engineering [UG]</h4>
+                            <p class="text-gray-400 text-sm mb-2">Java Institute Sri Lanka</p>
+                            <p class="text-gray-500 text-xs">Rigorous academic background covering core software engineering patterns and data structures.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item d-flex flex-column bg-light rounded h-100 p-4 p-lg-5">
-                        <div class="bg-icon flex-shrink-0 mb-3">
-                            <i class="fa fa-code fa-2x text-primary"></i>
+
+                <div class="gsap-reveal">
+                    <h3 class="text-2xl md:text-3xl font-heading font-bold mb-8 flex items-center gap-3 text-white">
+                        <i class="fas fa-laptop-code text-accent"></i> Technical Skills
+                    </h3>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-sm mb-2 font-medium">
+                                <span class="text-white">HTML / CSS / Tailwind</span>
+                                <span class="text-accent">95%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                                <div class="bg-gradient-to-r from-accent to-blue-500 h-2 rounded-full w-[95%]"></div>
+                            </div>
                         </div>
-                        <h4 class="mb-3">Web Design & Dev</h4>
-                        <p class="m-0">Modern, responsive, and fast-loading single-page and multi-page websites built with clean code.</p>
+                        <div>
+                            <div class="flex justify-between text-sm mb-2 font-medium">
+                                <span class="text-white">React & JavaScript</span>
+                                <span class="text-accent">90%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                                <div class="bg-gradient-to-r from-accent to-blue-500 h-2 rounded-full w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-2 font-medium">
+                                <span class="text-white">UI/UX & Graphic Design</span>
+                                <span class="text-accent">85%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                                <div class="bg-gradient-to-r from-accent to-blue-500 h-2 rounded-full w-[85%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-2 font-medium">
+                                <span class="text-white">Motion Editing & Production</span>
+                                <span class="text-accent">90%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                                <div class="bg-gradient-to-r from-accent to-blue-500 h-2 rounded-full w-[90%]"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item d-flex flex-column bg-light rounded h-100 p-4 p-lg-5">
-                        <div class="bg-icon flex-shrink-0 mb-3">
-                            <i class="fa fa-laptop-code fa-2x text-primary"></i>
-                        </div>
-                        <h4 class="mb-3">UI/UX & Branding</h4>
-                        <p class="m-0">Creative user interfaces, professional digital branding, and stunning graphic layouts.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Portfolio -->
+    <section id="projects" class="py-24 md:py-32 bg-darker border-y border-white/5 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center md:text-left mb-16 gsap-reveal">
+                <h3 class="text-accent text-xs md:text-sm font-bold tracking-widest uppercase mb-3">Portfolio</h3>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold text-white">Selected Works</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative rounded-3xl overflow-hidden glass-card aspect-square gsap-stagger">
+                    <img src="img/web1.png" alt="E-Commerce Platform" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-8">
+                        <span class="text-accent text-xs font-bold tracking-widest mb-1 uppercase">Web Design</span>
+                        <h4 class="text-xl font-bold text-white">E-Commerce Platform</h4>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-3xl overflow-hidden glass-card aspect-square gsap-stagger">
+                    <img src="img/d1.jpeg" alt="Brand Identity" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-8">
+                        <span class="text-accent text-xs font-bold tracking-widest mb-1 uppercase">Graphic Design</span>
+                        <h4 class="text-xl font-bold text-white">Brand Identity Systems</h4>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-3xl overflow-hidden glass-card aspect-square gsap-stagger sm:col-span-2 lg:col-span-1">
+                    <img src="img/web2.png" alt="Dashboard UI" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-8">
+                        <span class="text-accent text-xs font-bold tracking-widest mb-1 uppercase">UI/UX</span>
+                        <h4 class="text-xl font-bold text-white">Mobile Web Dashboard</h4>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Service End -->
+    </section>
 
-    <!-- Projects Start -->
-    <div class="container-xxl py-6 pt-5 bg-light" id="project">
-        <div class="container py-5">
-            <div class="row g-5 mb-5 align-items-center wow fadeInUp" data-wow-delay="0.1s">
-                <div class="col-lg-6">
-                    <h1 class="display-5 mb-0">My Projects</h1>
-                </div>
-                <div class="col-lg-6 text-lg-end">
-                    <ul class="list-inline mx-n3 mb-0" id="portfolio-flters">
-                        <li class="mx-3 active btn btn-outline-primary btn-sm" data-filter="*">All Projects</li>
-                        <li class="mx-3 btn btn-outline-primary btn-sm" data-filter=".first">Web Design</li>
-                        <li class="mx-3 btn btn-outline-primary btn-sm" data-filter=".second">Graphic/Motion</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row g-4 portfolio-container wow fadeInUp" data-wow-delay="0.1s">
-                <div class="col-lg-4 col-md-6 portfolio-item first">
-                    <div class="portfolio-img rounded overflow-hidden shadow-sm">
-                        <img class="img-fluid" src="img/web1.png" alt="Web Project">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/web1.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 md:py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl md:rounded-[3rem] p-8 sm:p-12 md:p-16 gsap-reveal grid lg:grid-cols-2 gap-12">
+                
+                <div>
+                    <h2 class="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-white mb-4">Let's build <br> something <span class="text-accent">great.</span></h2>
+                    <p class="text-gray-400 text-sm md:text-base mb-8">Have an interesting project or inquiry? Get in touch and let's collaborate.</p>
+                    
+                    <div class="space-y-5 text-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-accent shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold">Location</h5>
+                                <p class="text-gray-400 text-xs">NO 246 Nidahasgama, Wellawa, Kurunegala, Sri Lanka</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-accent shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold">Phone</h5>
+                                <p class="text-gray-400 text-xs">+94 76 683 6001</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-accent shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold">Email</h5>
+                                <p class="text-gray-400 text-xs">sadaresvishmika@gmail.com</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second">
-                    <div class="portfolio-img rounded overflow-hidden shadow-sm">
-                        <img class="img-fluid" src="img/d1.jpeg" alt="Graphic Design">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/d1.jpeg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                
+                <!-- Working Email Contact Form (Connected via Formspree to sadaresvishmika@gmail.com) -->
+                <div>
+                    <form action="https://formspree.io/f/xkjwygoo" method="POST" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Your Name</label>
+                            <input type="text" name="name" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent transition" placeholder="John Doe">
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first">
-                    <div class="portfolio-img rounded overflow-hidden shadow-sm">
-                        <img class="img-fluid" src="img/web2.png" alt="Web Project">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/web2.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Your Email</label>
+                            <input type="email" name="email" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent transition" placeholder="john@example.com">
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Projects End -->
-
-    <!-- Contact Start -->
-    <div class="container-xxl py-6" id="contact">
-        <div class="container">
-            <div class="row g-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="col-lg-6">
-                    <h1 class="display-5 mb-0">Let's Work Together</h1>
-                </div>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="mb-2">My Office:</p>
-                    <h5 class="fw-bold">NO 246 Nidahasgama, Wellawa, Kurunegala, Sri Lanka</h5>
-                    <hr class="w-100">
-                    <p class="mb-2">Call Me:</p>
-                    <h5 class="fw-bold">+94 76 683 6001</h5>
-                    <hr class="w-100">
-                    <p class="mb-2">Mail Me:</p>
-                    <h5 class="fw-bold">sadaresvishmika@gmail.com</h5>
-                    <hr class="w-100">
-                    <p class="mb-2">Follow Me:</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-primary me-2" href="https://www.facebook.com/share/1GJ5C3gh1a/"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-primary me-2" href="https://wa.link/st95i1"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
-                            </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Message</label>
+                            <textarea rows="3" name="message" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent transition resize-none" placeholder="Project details..."></textarea>
                         </div>
+                        <button type="submit" class="w-full bg-white text-black font-bold py-3.5 rounded-xl hover:bg-accent transition duration-300 text-sm">Send Message</button>
                     </form>
                 </div>
+                
             </div>
         </div>
-    </div>
-    <!-- Contact End -->
+    </section>
 
-    <!-- Copyright Start -->
-    <div class="container-fluid bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; <span id="year"></span> Wishwa Tech. All Rights Reserved. Designed By Wishwa P Weragoda</p>
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/5 bg-darker">
+        <div class="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div class="text-xl font-heading font-black tracking-tighter text-white">
+                W<span class="text-accent">W</span>P.
+            </div>
+            <p class="text-gray-500 text-xs">© 2026 Wishwa Tech. All Rights Reserved.</p>
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/share/1GJ5C3gh1a/" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-accent transition"><i class="fab fa-facebook-f text-xs"></i></a>
+                <link rel="stylesheet" href="">
+                <a href="https://wa.link/st95i1" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-accent transition"><i class="fab fa-whatsapp text-xs"></i></a>
+            </div>
         </div>
-    </div>
-    <!-- Copyright End -->
+    </footer>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- GSAP Scripts & Security Protections -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Disable F12, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+C to protect source code
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || 
+                (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+                return false;
+            }
+        });
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/typed/typed.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+        gsap.registerPlugin(ScrollTrigger);
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+        gsap.set(".gsap-hero, .gsap-reveal, .gsap-stagger", { autoAlpha: 1, visibility: "visible" });
+
+        const heroTl = gsap.timeline();
+        heroTl.fromTo(".gsap-hero", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.2 });
+        heroTl.fromTo(".gsap-hero-img", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: "power2.out" }, "-=0.5");
+
+        gsap.utils.toArray('.gsap-reveal').forEach(element => {
+            gsap.fromTo(element, { y: 30, opacity: 0 }, {
+                y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
+                scrollTrigger: { trigger: element, start: "top 90%", toggleActions: "play none none reverse" }
+            });
+        });
+
+        gsap.utils.toArray('.grid').forEach(grid => {
+            const items = grid.querySelectorAll('.gsap-stagger');
+            if(items.length > 0) {
+                gsap.fromTo(items, { y: 30, opacity: 0 }, {
+                    y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power2.out",
+                    scrollTrigger: { trigger: grid, start: "top 85%", toggleActions: "play none none reverse" }
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>
